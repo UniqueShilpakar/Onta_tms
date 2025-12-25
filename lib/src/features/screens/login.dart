@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:onta_tms/src/features/screens/createaccount.dart';
-import 'package:onta_tms/src/features/screens/forgotpassword.dart';
+import 'package:onta_tms/src/features/dashboards/homepage.dart';
+import 'package:onta_tms/src/routes/app_routes.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     filled: true,
                     fillColor: const Color(0xFFF1F4F9),
 
-                    // Normal state border (black stroke)
+                   
                     // Default border when not touched
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -175,11 +175,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         //handles password button need to call the password reset page
                         {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgotPassword(),
-                            ),
+                          Navigator.pushNamed(
+                            context,AppRoutes.forgotPassword
                           );
                         }
                       },
@@ -293,9 +290,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      //process data
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage())
+                      );
                     }
-                    //handels sigin need to pass a function
                   },
 
                   style: ElevatedButton.styleFrom(
@@ -325,11 +324,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CreateAccountScreen(),
-                          ),
+                        Navigator.pushNamed(
+                          context,AppRoutes.createAccount
+                         
                         );
                       },
                       style: TextButton.styleFrom(
@@ -353,11 +350,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   //forgot password button
                   //------------------------------------------------------
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ForgotPassword(),
-                      ),
+                    Navigator.pushNamed(
+                      context,AppRoutes.forgotPassword
                     );
                   },
                   style: TextButton.styleFrom(

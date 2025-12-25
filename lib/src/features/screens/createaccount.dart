@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:onta_tms/src/features/screens/forgotpassword.dart';
-import 'package:onta_tms/src/features/screens/login.dart';
+import 'package:onta_tms/src/routes/app_routes.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -200,12 +199,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
                               TextButton(
                                 onPressed: () {
-                                  Navigator.push(
+                                  Navigator.pushNamed(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ForgotPassword(),
-                                    ),
+                                    AppRoutes.forgotPassword,
                                   );
                                 },
 
@@ -324,7 +320,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           // Sign Up button
                           ElevatedButton(
                             onPressed: () {
-                              // Handle sign up
+                              Navigator.pushNamed(
+                                context, AppRoutes.homePage
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFF7A032),
@@ -359,12 +357,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               GestureDetector(
                                 onTap: () {
                                   // Navigate to login
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
-                                    ),
-                                  );
+                                  Navigator.pushNamed(context, AppRoutes.login);
                                 },
                                 child: Text(
                                   'Login',

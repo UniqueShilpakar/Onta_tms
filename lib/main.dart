@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:onta_tms/src/features/screens/login.dart';
+
+import 'package:onta_tms/src/routes/app_page.dart';
+import 'package:onta_tms/src/routes/app_routes.dart';
 
 
 void main() {
@@ -14,11 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Responsive Login',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const LoginScreen(),
+      initialRoute: AppRoutes.login,
+      routes: AppPages.routes,
     );
   }
 }
