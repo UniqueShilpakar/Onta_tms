@@ -1,55 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:onta_tms/src/routes/app_routes.dart';
+import 'package:get/get.dart';
+import 'package:onta_tms/src/controllers/forgotpasswordcontroller.dart';
 
-class ForgotPassword extends StatefulWidget {
+
+class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
-}
-
-class _ForgotPasswordState extends State<ForgotPassword> {
-  final TextEditingController _emailController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
-  }
-
-  //opens forgot password if the email validator is correct
-  void _handleSubmit() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, AppRoutes.resetPassword);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // Get controller from binding
+    final controller = Get.find<ForgotPasswordController>();
+    
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
           Positioned.fill(
             child: SvgPicture.asset(
-              'assets/images/background.svg',
-              fit: BoxFit.cover,  
+              'assets/images/deskbg.svg',
+              fit: BoxFit.cover,
             ),
           ),
-
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Center(
                 child: SingleChildScrollView(
                   child: Container(
-                    constraints: const BoxConstraints(maxWidth: 400),
+                    constraints: const BoxConstraints(maxWidth: 520),
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.1),
@@ -59,7 +42,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ],
                     ),
                     child: Form(
-                      key: _formKey,
+                      key: controller.formKey,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,15 +52,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             children: [
                               // BACK BUTTON
                               GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
+                                onTap: controller.goBack,
                                 child: Container(
                                   width: 40,
                                   height: 40,
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFF5F5F5),
-                                    borderRadius: BorderRadius.circular(30),
+                                    borderRadius: BorderRadius.circular(24),
                                   ),
                                   child: const Center(
                                     child: Icon(
@@ -90,14 +71,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               ),
                               
                               // TITLE (CENTERED IN REMAINING SPACE)
-                              Expanded(
-                                child: const Text(
+                              const Expanded(
+                                child: Text(
                                   'Forgot Password',
                                   style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w800,
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold,
                                     color: Colors.black87,
-                                  ),  
+                                  ),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -107,21 +88,21 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             ],
                           ),
                           const SizedBox(height: 24),
-
+                          
                           // EMAIL LABEL
                           const Text(
                             'Email Address',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black87, 
+                              color: Colors.black87,
                             ),
                           ),
                           const SizedBox(height: 8),
-
+                          
                           // EMAIL INPUT FIELD
                           TextFormField(
-                            controller: _emailController,
+                            controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               hintText: 'OntaTms@gmail.com',
@@ -164,26 +145,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 horizontal: 16,
                               ),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your email address';
-                              }
-                              if (!RegExp(
-                                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                              ).hasMatch(value)) {
-                                return 'Please enter a valid email address';
-                              }
-                              return null;
-                            },
+                            validator: controller.validateEmail,
                           ),
                           const SizedBox(height: 24),
-
-                          // SUBMIT BUTTON
-                          SizedBox(
+                          
+                          // SUBMIT BUTTON with Obx for loading state
+                          Obx(() => SizedBox(
                             width: double.infinity,
                             height: 50,
                             child: ElevatedButton(
-                              onPressed: _handleSubmit,
+                              onPressed: controller.isLoading.value
+                                  ? null
+                                  : controller.handleSubmit,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFFF9F43),
                                 foregroundColor: Colors.white,
@@ -192,15 +165,24 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
-                              child: const Text(
-                                'Submit',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                              child: controller.isLoading.value
+                                  ? const SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                        strokeWidth: 2,
+                                      ),
+                                    )
+                                  : const Text(
+                                      'Submit',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                             ),
-                          ),
+                          )),
                         ],
                       ),
                     ),
