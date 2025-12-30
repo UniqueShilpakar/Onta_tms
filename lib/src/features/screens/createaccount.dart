@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:onta_tms/src/controllers/createaccount_controller.dart';
+import 'package:onta_tms/src/controllers/screens_controllers/createaccount_controller.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   const CreateAccountScreen({super.key});

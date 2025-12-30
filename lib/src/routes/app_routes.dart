@@ -1,9 +1,10 @@
 //routes name only
 import 'package:get/route_manager.dart';
-import 'package:onta_tms/src/bindings/createAccount_binding.dart';
-import 'package:onta_tms/src/bindings/forgotpasswordbindings.dart';
-import 'package:onta_tms/src/bindings/login_binding.dart';
-import 'package:onta_tms/src/bindings/resetpasswordbindings.dart';
+import 'package:onta_tms/src/bindings/dashboard_bindings/homebindings.dart';
+import 'package:onta_tms/src/bindings/screens_bindings/createaccount_binding.dart';
+import 'package:onta_tms/src/bindings/screens_bindings/forgotpasswordbindings.dart';
+import 'package:onta_tms/src/bindings/screens_bindings/login_binding.dart';
+import 'package:onta_tms/src/bindings/screens_bindings/resetpasswordbindings.dart';
 import 'package:onta_tms/src/features/dashboards/homepage.dart';
 import 'package:onta_tms/src/features/screens/createaccount.dart';
 import 'package:onta_tms/src/features/screens/forgotpassword.dart';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const createAccount = '/create-account';
   static const String resetPassword = '/reset-password';
   static const String homePage = '/home-page';
+  // static const String sidebar = '/sidebar',
 
   //getxpages
   static List<GetPage> pages = [
@@ -43,5 +45,15 @@ class AppRoutes {
       page: () => const CreateAccountScreen(),
       binding: CreateAccountBindings(),
     ),
+    GetPage(
+  name: '/home',
+  page: () => const HomePage(),
+  binding: HomeBinding(),
+)
+
+    // GetPage(
+    //   name: sidebar,
+    //   page: 
+    // ),
   ];
 }

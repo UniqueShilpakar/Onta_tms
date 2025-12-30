@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:onta_tms/src/controllers/forgotpasswordcontroller.dart';
+import 'package:onta_tms/src/controllers/screens_controllers/forgotpasswordcontroller.dart';
 
 
 class ForgotPassword extends StatelessWidget {

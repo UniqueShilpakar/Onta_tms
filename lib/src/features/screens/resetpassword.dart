@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:onta_tms/src/controllers/resetpasswordcontroller.dart';
+import 'package:onta_tms/src/controllers/screens_controllers/resetpasswordcontroller.dart';
 
 
 class ResetPasswordScreen extends StatelessWidget {
