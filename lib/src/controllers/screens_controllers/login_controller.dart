@@ -54,7 +54,7 @@ class LoginController extends GetxController {
         await Future.delayed(Duration(seconds: 2));
 
         //navigating to home page on successful login
-        Get.offAllNamed(AppRoutes.homePage);
+        Get.offAllNamed(AppRoutes.home);
       } finally {
         isLoading.value = false;
       }
@@ -67,13 +67,13 @@ class LoginController extends GetxController {
     Get.toNamed(AppRoutes.forgotPassword);
   }
 
-  // Navigate to create account -
+  // Navigate to create account 
   void goToCreateAccount() {
     Get.toNamed(AppRoutes.createAccount);
   }
 
   void goToHomePage() {
-    Get.toNamed(AppRoutes.homePage);
+    Get.toNamed(AppRoutes.home);
   }
 
   //dispose controllers when not needed

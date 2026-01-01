@@ -1,36 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:onta_tms/src/controllers/dashboard_controller/sidebarController.dart';
-import 'package:onta_tms/src/widgets/customsidebar.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:onta_tms/src/widgets/sidebar/customsidebar.dart';
+import 'package:onta_tms/src/widgets/sidebar/mobile_drawer.dart';
+
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final Widget child;
+
+  const HomePage({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(Sidebarcontroller());
+    // Get controller instance
+    final controller = Get.put(Sidebarcontroller());
 
-    //checks if mobile for drawer
-    final isMobile = ResponsiveBreakpoints.of(context).smallerThan(TABLET);
+    // Get screen width for responsive behavior
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Update sidebar state based on screen width
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.updateSidebarState(screenWidth);
+    });
+
+    // Checks if mobile for drawer
+    final isMobile = screenWidth < 600;
 
     return Scaffold(
-      //drawr for mobile
-      drawer: isMobile ? const Drawer(child: CustomSidebar()) : null,
+      // Drawer for mobile
+      drawer: isMobile ? MobileDrawer() : null,
       body: Row(
         children: [
-          //side bar hide on mobile and uses drawer instead
-          if (!isMobile) const CustomSidebar(),
+          // Sidebar hide on mobile and uses drawer instead
+          if (!isMobile) CustomSidebar(),
 
-          //main area with contents
+          // Main area with contents
           Expanded(
             child: Column(
               children: [
-                //appbar for mobile
+                // AppBar for mobile
                 if (isMobile)
                   Container(
-                    height: 60,
-                    color: const Color(0xFF235BB1),
+                    height: 56,
+                    color: const Color(0xFF2C5F99),
                     child: Row(
                       children: [
                         Builder(
@@ -38,7 +50,7 @@ class HomePage extends StatelessWidget {
                             icon: const Icon(
                               Icons.menu,
                               color: Colors.white,
-                              size: 28,
+                              size: 24,
                             ),
                             onPressed: () {
                               Scaffold.of(context).openDrawer();
@@ -61,12 +73,13 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
 
-                  Expanded(
-                    child: Container(
-                      //our main contain beside from sidebar
-                      color: Colors.grey,
-                    ),
-                    ),
+                // Main content area - displays the child page
+                Expanded(
+                  child: Container(
+                    color: Colors.grey[100],
+                    child: child,
+                  ),
+                ),
               ],
             ),
           ),

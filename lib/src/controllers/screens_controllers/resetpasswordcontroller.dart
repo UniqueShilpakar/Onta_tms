@@ -66,7 +66,7 @@ class ResetPasswordController extends GetxController {
         );
         
         // Navigate to home page
-        Get.offAllNamed(AppRoutes.homePage);
+        Get.offAllNamed(AppRoutes.home);
         
       } catch (e) {
         // Show error message

@@ -87,7 +87,7 @@ class CreateAccountController extends GetxController {
       try {
         isLoading.value = true;
 
-        Get.offAllNamed(AppRoutes.homePage);
+        Get.offAllNamed(AppRoutes.home);
 
         // Simulate API call
         await Future.delayed(const Duration(seconds: 2));
@@ -128,7 +128,7 @@ class CreateAccountController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.toNamed(AppRoutes.homePage);
+    Get.toNamed(AppRoutes.home);
   }
 
   @override

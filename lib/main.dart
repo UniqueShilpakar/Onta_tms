@@ -13,19 +13,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Responsive Login',
+      title: 'Onta TMS',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.login,
       getPages: AppRoutes.pages,
-      builder: (context, child) => ResponsiveBreakpoints.builder(
-        child: child!,
-        breakpoints: [
-          const Breakpoint(start: 0, end: 480, name: MOBILE),
-          const Breakpoint(start: 481, end: 800, name: TABLET),
-          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-        ],
-      ),
+
+      builder: (context, child) {
+        return ResponsiveBreakpoints.builder(
+          child: child!,
+          breakpoints: const [
+            Breakpoint(start: 0, end: 480, name: MOBILE),
+            Breakpoint(start: 481, end: 800, name: TABLET),
+            Breakpoint(start: 801, end: 1920, name: DESKTOP),
+            Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          ],
+        );
+      },
+
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-import 'package:onta_tms/src/widgets/customsidebar.dart';
+import 'package:onta_tms/src/widgets/sidebar/customsidebar.dart';
 
 
 class SidebarPage extends StatelessWidget {
@@ -12,7 +12,7 @@ class SidebarPage extends StatelessWidget {
       body: Row(
         children: [
           // Sidebar
-          const CustomSidebar(),
+           CustomSidebar(),
           
           // Main Content Area
           Expanded(
@@ -121,55 +121,55 @@ class SidebarPage extends StatelessWidget {
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       children: [
-        _buildStatCard('Total Sales', '₹1,234,567', Icons.attach_money, Colors.green),
-        _buildStatCard('Queries', '345', Icons.quiz, Colors.blue),
-        _buildStatCard('Tours', '89', Icons.group, Colors.orange),
-        _buildStatCard('Revenue', '₹2.5M', Icons.trending_up, Colors.purple),
+        // _buildStatCard('Total Sales', '₹1,234,567', Icons.attach_money, Colors.green),
+        // _buildStatCard('Queries', '345', Icons.quiz, Colors.blue),
+        // _buildStatCard('Tours', '89', Icons.group, Colors.orange),
+        // _buildStatCard('Revenue', '₹2.5M', Icons.trending_up, Colors.purple),
       ],
     );
   }
 
-  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(icon, color: color, size: 32),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildStatCard(String title, String value, IconData icon, Color color) {
+  //   return Container(
+  //     padding: const EdgeInsets.all(20),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(12),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.black.withOpacity(0.05),
+  //           blurRadius: 8,
+  //           offset: const Offset(0, 2),
+  //         ),
+  //       ],
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Icon(icon, color: color, size: 32),
+  //         Column(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+  //             Text(
+  //               value,
+  //               style: const TextStyle(
+  //                 fontSize: 24,
+  //                 fontWeight: FontWeight.bold,
+  //               ),
+  //             ),
+  //             const SizedBox(height: 4),
+  //             Text(
+  //               title,
+  //               style: TextStyle(
+  //                 fontSize: 14,
+  //                 color: Colors.grey[600],
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
